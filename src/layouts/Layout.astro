@@ -3,6 +3,7 @@ import '../styles/global.css';
 import '../styles/atelier.css';
 import '../styles/nocturne.css';
 import '../styles/aurelia.css';
+import '../styles/riviera.css';
 import ThemeSwitcher from '../components/ThemeSwitcher.astro';
 import Logo from '../components/Logo.astro';
 import Arrow from '../components/Arrow.astro';
@@ -11,8 +12,9 @@ const {title, description} = Astro.props;
 const path = Astro.url.pathname;
 const canonical = new URL(path, Astro.site);
 ---
-<!doctype html><html lang="en" data-theme="four"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="theme-color" content="#183d35"/><script is:inline>
-try { const requested = new URLSearchParams(location.search).get('theme'); const names = { '1':'one', '2':'two', '3':'three', '4':'four', one:'one', two:'two', three:'three', four:'four' }; const saved = localStorage.getItem('mannath-aurelia-seen') ? localStorage.getItem('mannath-theme') : 'four'; const theme = names[requested] || saved || 'four'; if (['one','two','three','four'].includes(theme)) document.documentElement.dataset.theme = theme; localStorage.setItem('mannath-aurelia-seen','1'); localStorage.setItem('mannath-theme',theme); } catch {}
+<!doctype html><html lang="en" data-theme="five"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="theme-color" content="#183d35"/><script is:inline>
+try { const requested = new URLSearchParams(location.search).get('theme'); const names = { '1':'one', '2':'two', '3':'three', '4':'four', '5':'five', one:'one', two:'two', three:'three', four:'four', five:'five' }; const saved = localStorage.getItem('mannath-riviera-seen') ? localStorage.getItem('mannath-theme') : 'five'; const theme = names[requested] || saved || 'five'; if (['one','two','three','four','five'].includes(theme)) document.documentElement.dataset.theme = theme; localStorage.setItem('mannath-riviera-seen','1'); localStorage.setItem('mannath-theme',theme); } catch {}
+if(document.documentElement.dataset.theme === 'five') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#254bea');
 if(document.documentElement.dataset.theme === 'four') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#29372c');
 if(document.documentElement.dataset.theme === 'three') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#101b29');
 if(document.documentElement.dataset.theme === 'two') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#241e1b');

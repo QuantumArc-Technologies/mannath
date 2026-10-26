@@ -1,0 +1,36 @@
+---
+import Arrow from './Arrow.astro';
+const scenes = [
+  {label:'Coastal calm',title:'Closer to the coast.',image:'nocturne-pool.jpg',alt:'Contemporary pool terrace overlooking the water',detail:'Open horizons. A little more breathing room.',interest:'Waterfront residences'},
+  {label:'City energy',title:'In your element.',image:'hero.jpg',alt:'Dubai skyline and the Burj Khalifa at sunset',detail:'New perspectives. Right where life happens.',interest:'City residences'},
+  {label:'Your own space',title:'Room for your world.',image:'villa.jpg',alt:'Private contemporary villa with landscaped outdoor space',detail:'Space to slow down. Freedom to make it yours.',interest:'Private villas'},
+];
+---
+<section class="riviera-hero" aria-label="Find your rhythm">
+  <div class="riviera-edition"><span>UAE REAL ESTATE, WITH A FRESH PERSPECTIVE</span><span>25.° N / 55.° E ↗</span></div>
+  <div class="riviera-heading"><h1>Life looks<br/><span>good here<span class="riviera-period">.</span></span></h1><div class="riviera-aside"><span class="riviera-spark" aria-hidden="true">✳</span><p>A new address.<br/>A whole new point of view.</p><a href="#collection">Find your place <Arrow/></a></div></div>
+  <div class="riviera-selector"><span>WHAT’S YOUR RHYTHM?</span><div role="group" aria-label="Choose a lifestyle">{scenes.map((scene,i)=><button type="button" data-riviera-choice={i} aria-pressed={i===0?'true':'false'}><span>0{i+1}</span>{scene.label}<span aria-hidden="true">↗</span></button>)}</div><span class="riviera-hint">A FEELING. THEN AN ADDRESS.</span></div>
+  <div class="riviera-window">{scenes.map((scene,i)=><img class:list={['riviera-scene',{'is-active':i===0}]} src={'/images/'+scene.image} alt={scene.alt} width="1800" height="1000" loading={i===0?'eager':'lazy'} />)}<div class="riviera-photo-shade"></div><span class="riviera-image-label">THE ART OF LIVING WELL / MANNATH</span><div class="riviera-caption"><div><span data-riviera-detail>{scenes[0].detail}</span><h2 data-riviera-title>{scenes[0].title}</h2></div><a data-riviera-link href={'/contact/?interest='+encodeURIComponent(scenes[0].interest)} aria-label="Enquire about waterfront residences"><Arrow/></a></div><a class="riviera-sticker" href="#introduction"><span>GOOD PLACES.<br/>GREAT POSSIBILITIES.</span><span aria-hidden="true">↓</span></a></div>
+  <div class="riviera-ticker" aria-hidden="true"><div>{[0,1,2,3].map(()=><span>A PLACE TO BELONG <b>✳</b> A LIFE TO MAKE YOUR OWN <b>✳</b> </span>)}</div></div>
+  <span class="sr-only" role="status" data-riviera-status></span>
+</section>
+<script type="application/json" id="riviera-scenes" set:html={JSON.stringify(scenes)} />
+<script>
+const scenes = JSON.parse(document.querySelector('#riviera-scenes')?.textContent || '[]');
+const riviera = document.querySelector('.riviera-hero');
+if (riviera) {
+ const choices = riviera.querySelectorAll<HTMLButtonElement>('[data-riviera-choice]');
+ choices.forEach(button => button.addEventListener('click', () => {
+  const index = Number(button.dataset.rivieraChoice);
+  const scene = scenes[index];
+  choices.forEach((choice,i) => choice.setAttribute('aria-pressed', String(i === index)));
+  riviera.querySelectorAll('.riviera-scene').forEach((image,i) => image.classList.toggle('is-active',i === index));
+  riviera.querySelector('[data-riviera-title]')!.textContent = scene.title;
+  riviera.querySelector('[data-riviera-detail]')!.textContent = scene.detail;
+  const link = riviera.querySelector<HTMLAnchorElement>('[data-riviera-link]')!;
+  link.href = '/contact/?interest=' + encodeURIComponent(scene.interest);
+  link.setAttribute('aria-label', 'Enquire about ' + scene.interest.toLowerCase());
+  riviera.querySelector('[data-riviera-status]')!.textContent = scene.label + ': ' + scene.detail;
+ }));
+}
+</script>
