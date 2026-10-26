@@ -2,6 +2,7 @@
 const themes = [
   { id: 'one', number: '01', name: 'Evergreen', description: 'Forest green · ivory · muted gold', swatch: 'swatch-one' },
   { id: 'two', number: '02', name: 'Atelier', description: 'Espresso · alabaster · bronze', swatch: 'swatch-two' },
+  { id: 'three', number: '03', name: 'Nocturne', description: 'Midnight · champagne · muted rose', swatch: 'swatch-three' },
 ];
 ---
 <button type="button" class="theme-launcher" aria-haspopup="dialog" aria-controls="theme-drawer" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18h1.3a2.2 2.2 0 0 0 1.5-3.8 1.3 1.3 0 0 1 .9-2.2h1.6A3.7 3.7 0 0 0 21 11.3 8.7 8.7 0 0 0 12 3Z" stroke="currentColor" stroke-width="1.4"/><circle cx="7.5" cy="11" r="1" fill="currentColor"/><circle cx="10" cy="7" r="1" fill="currentColor"/><circle cx="15" cy="7.5" r="1" fill="currentColor"/></svg><span>Themes</span><span class="launcher-current sr-only">01</span></button>
@@ -15,7 +16,7 @@ launcher?.addEventListener('click',()=>{drawer?.showModal();launcher.setAttribut
 drawer?.addEventListener('close',()=>{launcher?.setAttribute('aria-expanded','false');document.documentElement.classList.remove('theme-drawer-open');});
 document.querySelector('.drawer-close')?.addEventListener('click',()=>drawer?.close());
 drawer?.addEventListener('click',event=>{if(event.target!==drawer)return;const bounds=drawer.getBoundingClientRect();if(event.clientX<bounds.left||event.clientX>bounds.right||event.clientY<bounds.top||event.clientY>bounds.bottom)drawer.close();});
-buttons.forEach(button=>button.addEventListener('click',()=>{const theme=button.dataset.themeChoice||'one';if(theme===document.documentElement.dataset.theme){drawer?.close();return;}document.documentElement.dataset.theme=theme;const url=new URL(location.href);url.searchParams.delete('theme');history.replaceState(null,'',url);try{localStorage.setItem('mannath-theme',theme);}catch{}document.querySelector('meta[name="theme-color"]')?.setAttribute('content',theme==='two'?'#241e1b':'#183d35');sync();const status=document.querySelector('#theme-status');if(status)status.textContent=theme==='two'?'Atelier theme selected.':'Evergreen theme selected.';drawer?.close();window.scrollTo({top:0,behavior:'instant'});}));
+buttons.forEach(button=>button.addEventListener('click',()=>{const theme=button.dataset.themeChoice||'one';if(theme===document.documentElement.dataset.theme){drawer?.close();return;}document.documentElement.dataset.theme=theme;const url=new URL(location.href);url.searchParams.delete('theme');history.replaceState(null,'',url);try{localStorage.setItem('mannath-theme',theme);}catch{}document.querySelector('meta[name="theme-color"]')?.setAttribute('content',theme==='three'?'#101b29':theme==='two'?'#241e1b':'#183d35');sync();const status=document.querySelector('#theme-status');if(status)status.textContent=theme==='three'?'Nocturne theme selected.':theme==='two'?'Atelier theme selected.':'Evergreen theme selected.';drawer?.close();window.scrollTo({top:0,behavior:'instant'});}));
 </script>
 
 <style is:global>

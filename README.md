@@ -32,6 +32,14 @@ Deployment is configured separately from this source repository.
 
 ## Visual themes
 
-The floating Themes button opens a sidebar that switches between **Evergreen** (Theme One) and **Atelier** (Theme Two), and remembers the choice in local storage across all pages. Theme One is the default. Direct previews: `/?theme=1` and `/?theme=2`. Switching with the sidebar removes the preview parameter so subsequent reloads respect the visitor's latest choice.
+The floating Themes button opens a sidebar that switches between **Evergreen** (Theme One) and **Atelier** (Theme Two), and remembers the choice in local storage across all pages. Theme One is the default. Direct previews: `/?theme=1`, `/?theme=2` and `/?theme=3`. Switching with the sidebar removes the preview parameter so subsequent reloads respect the visitor's latest choice.
 
 Atelier has its own architectural hero, asymmetric collection grid, arched image treatment, warm espresso/bronze palette and motion. Styles are isolated in `src/styles/atelier.css`; the original palette and layout remain available. Both themes honor reduced-motion preferences.
+
+### Nocturne — Theme Three
+
+Preview with `/?theme=3` or select Nocturne from the floating theme sidebar. A midnight, champagne and muted rose design with a three-scene carousel, masked typography reveals, crossfades, gentle image motion and a horizontally scrolling collection. Includes previous/next, slide indicators, keyboard arrows, touch swipes and a pause control. Slides advance every five seconds with long crossfades and continuous gentle image movement. Autoplay continues during mouse hover and pointer interaction; it pauses for keyboard focus, offscreen content and background tabs, and is disabled for reduced-motion preferences.
+
+Additional illustrative Unsplash photography: photo-1600210492486-724fe5c67fb0, photo-1600047509807-ba8f99d2cdde, photo-1600607687939-ce8a6c25118c. These are architectural inspiration, not advertised UAE listings.
+
+Nocturne's carousel now includes seven scenes. Additional Unsplash images: photo-1613490493576-7fde63acd811 (pool villa), photo-1600607688969-a5bfcd646154 (garden residence), photo-1600210492493-0946911123ea (interior), photo-1512632578888-169bbbc64f33 (Abu Dhabi landmark).
