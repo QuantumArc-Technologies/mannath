@@ -32,7 +32,7 @@ Deployment is configured separately from this source repository.
 
 ## Visual themes
 
-The floating Themes button opens a sidebar that switches between **Aurelia** (Theme Four), **Evergreen** (Theme One), **Atelier** (Theme Two), and **Nocturne** (Theme Three), and remembers the choice in local storage across all pages. Aurelia is the default; existing visitors are introduced to it once, then their selected theme is remembered. Direct previews: `/?theme=1`, `/?theme=2`, `/?theme=3` and `/?theme=4`. Switching with the sidebar removes the preview parameter so subsequent reloads respect the visitor's latest choice.
+The floating Themes button opens a sidebar that switches between **Aurelia** (Theme Four), **Evergreen** (Theme One), **Atelier** (Theme Two), and **Nocturne** (Theme Three), and remembers the choice in local storage across all pages. Folio (Theme Six) is the default; existing visitors are introduced to it once, then their selected theme is remembered. Direct previews: `/?theme=1`, `/?theme=2`, `/?theme=3` and `/?theme=4`. Switching with the sidebar removes the preview parameter so subsequent reloads respect the visitor's latest choice.
 
 Atelier has its own architectural hero, asymmetric collection grid, arched image treatment, warm espresso/bronze palette and motion. Styles are isolated in `src/styles/atelier.css`; the original palette and layout remain available. Both themes honor reduced-motion preferences.
 
@@ -50,7 +50,7 @@ Preview with `/?theme=4`. Deep olive, burnished copper, champagne and parchment 
 
 ### Reference palettes — Themes Seven, Eight and Nine
 
-New previews: `/?theme=7` (Signal), `/?theme=8` (Amethyst), `/?theme=9` (Terra). The Themes drawer preserves all earlier designs. Signal is introduced once as the default, after which the visitor's choice persists.
+New previews: `/?theme=7` (Signal), `/?theme=8` (Amethyst), `/?theme=9` (Terra). The Themes drawer preserves all earlier designs. Folio is the default; after its one-time introduction, the visitor's choice persists.
 
 - Signal: charcoal `#2A2A2A`, moonlit silver `#C0C0C0`, signal red `#E10600`.
 - Amethyst: jet black `#050505`, royal amethyst `#3B0A6B`, electric cyan `#00E5FF`.
