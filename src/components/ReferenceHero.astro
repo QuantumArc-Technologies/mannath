@@ -1,0 +1,28 @@
+---
+const themes=[
+ {id:'seven',name:'Signal',slug:'signal',kicker:'A BOLDER POINT OF VIEW',lines:['Better places.','Brighter','possibilities.'],note:'For the life you want to make.',label:'THE SIGNAL EDIT',words:['Presence','Perspective','Possibility']},
+ {id:'eight',name:'Amethyst',slug:'amethyst',kicker:'FOR EXTRAORDINARY PERSPECTIVES',lines:['A deeper','kind of','belonging.'],note:'Discover a world beyond the expected.',label:'THE AMETHYST EDIT',words:['Discover','Imagine','Transcend']},
+ {id:'nine',name:'Terra',slug:'terra',kicker:'NATURE / SPACE / BALANCE',lines:['Spaces','that feel','alive.'],note:'A slower rhythm. A more intentional way of living.',label:'THE TERRA EDIT',words:['Breathe','Belong','Become']},
+];
+---
+{themes.map(t=><section class:list={['reference-hero',`reference-${t.id}`]} data-reference-theme={t.id} aria-label={t.name+' introduction'}>
+ <div class="reference-top"><span>MANNATH / {t.label}</span><span>UNITED ARAB EMIRATES · EST. FOR YOU</span></div>
+ <div class="reference-stage"><div class="reference-copy"><span class="eyebrow">{t.kicker}</span><h1>{t.lines.map((line,i)=><span style={`--word-delay:${i*140}ms`}>{i===2?<em>{line}</em>:line}</span>)}</h1><p>{t.note}<br/>Considered homes. Personal connections.</p><a href="#collection" class="reference-explore"><span>↗</span> EXPLORE YOUR POSSIBILITIES</a></div>
+ <div class="reference-art"><div class="reference-photo-stack">{['architecture','interior','retreat'].map((kind,i)=><img class:list={['reference-slide',{'is-active':i===0}]} data-reference-slide src={'/images/'+t.slug+'-'+kind+'.jpg'} alt={t.name+' collection — '+(kind==='interior'?'a thoughtfully designed residential interior':kind==='retreat'?'an inspiring private retreat':'distinctive residential architecture')} width="1600" height="1200" loading={i===0?'eager':'lazy'}/>)}<div class="reference-photo-shade"></div></div><div class="reference-image-note"><span>0<span data-reference-image-number>1</span> / THE MANNATH COLLECTION</span><strong data-reference-image-caption>Places with presence.</strong></div><a href="/contact/" class="reference-photo-link" aria-label="Enquire about your next home">↗</a><span class="reference-art-caption">CURATED WITH INTENTION.<br/>CHOSEN AROUND YOU.</span></div></div>
+ <div class="reference-bottom"><span>THOUGHTFULLY CURATED REAL ESTATE</span><div class="reference-carousel" role="region" aria-roledescription="carousel" aria-label={t.name+' perspectives'} tabindex="0"><button type="button" data-reference-prev aria-label="Previous perspective">←</button><div class="reference-word" aria-live="off">{t.words.map((word,i)=><span hidden={i!==0} data-reference-word>{word}</span>)}</div><span data-reference-count>01 / 03</span><button type="button" data-reference-next aria-label="Next perspective">→</button><button type="button" data-reference-pause aria-label="Pause perspective carousel" aria-pressed="false">Ⅱ</button></div></div>
+ </section>)}
+<script>
+document.querySelectorAll<HTMLElement>('[data-reference-theme]').forEach(root=>{
+ const words=[...root.querySelectorAll<HTMLElement>('[data-reference-word]')];let index=0,paused=false;
+ const slides=[...root.querySelectorAll<HTMLElement>('[data-reference-slide]')];
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+ const show=(next:number)=>{index=(next+words.length)%words.length;words.forEach((word,i)=>word.hidden=i!==index);slides.forEach((slide,i)=>slide.classList.toggle('is-active',i===index));const imageNumber=root.querySelector('[data-reference-image-number]');if(imageNumber)imageNumber.textContent=String(index+1);const caption=root.querySelector('[data-reference-image-caption]');if(caption)caption.textContent=['Places with presence.','The beauty of everyday.','Room for a new chapter.'][index];const count=root.querySelector('[data-reference-count]');if(count)count.textContent=`0${index+1} / 03`;};
+ root.querySelector('[data-reference-prev]')?.addEventListener('click',()=>show(index-1));
+ root.querySelector('[data-reference-next]')?.addEventListener('click',()=>show(index+1));
+ const pause=root.querySelector<HTMLButtonElement>('[data-reference-pause]');
+ pause?.addEventListener('click',()=>{paused=!paused;pause.setAttribute('aria-pressed',String(paused));pause.setAttribute('aria-label',paused?'Play perspective carousel':'Pause perspective carousel');pause.textContent=paused?'▷':'Ⅱ';});
+ root.querySelector('.reference-carousel')?.addEventListener('keydown',(event)=>{const e=event as KeyboardEvent;if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();show(index+(e.key==='ArrowRight'?1:-1));}});
+ let touchX=0;root.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX;},{passive:true});root.addEventListener('touchend',e=>{const distance=e.changedTouches[0].clientX-touchX;if(Math.abs(distance)>50)show(index+(distance<0?1:-1));},{passive:true});
+ setInterval(()=>{if(!paused&&!reduce.matches&&!document.hidden&&document.documentElement.dataset.theme===root.dataset.referenceTheme&&!root.contains(document.activeElement)&&root.getBoundingClientRect().bottom>0)show(index+1);},4500);
+});
+</script>

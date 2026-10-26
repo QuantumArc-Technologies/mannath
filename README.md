@@ -47,3 +47,17 @@ Nocturne's carousel now includes seven scenes. Additional Unsplash images: photo
 ### Aurelia — Theme Four
 
 Preview with `/?theme=4`. Deep olive, burnished copper, champagne and parchment create a warm editorial identity across all pages. Includes an arched three-image carousel with crossfades, autoplay, pause, keyboard and swipe controls; scroll parallax; rotating ornament; moving typography ribbon; staggered reveals; and a mobile swipe collection. Reduced-motion preferences disable autoplay and decorative motion. Styles live in `src/styles/aurelia.css` and the hero in `src/components/AureliaHero.astro`.
+
+### Reference palettes — Themes Seven, Eight and Nine
+
+New previews: `/?theme=7` (Signal), `/?theme=8` (Amethyst), `/?theme=9` (Terra). The Themes drawer preserves all earlier designs. Signal is introduced once as the default, after which the visitor's choice persists.
+
+- Signal: charcoal `#2A2A2A`, moonlit silver `#C0C0C0`, signal red `#E10600`.
+- Amethyst: jet black `#050505`, royal amethyst `#3B0A6B`, electric cyan `#00E5FF`.
+- Terra: sage `#87A96B`, walnut `#5A3E2B`, amber `#D5851F`.
+
+These landing pages now feature dedicated three-image hero carousels, animated typography, photographic collections and previous/next, keyboard, swipe and pause controls. Signal uses an editorial silver/red split composition; Amethyst uses an immersive violet-tinted panorama; Terra uses arched daylight photography and sage collection sections. Autoplay respects reduced motion, keyboard focus, background tabs and active theme. Inner pages use dedicated photography per theme with entrance and hover motion. Photography is illustrative, not advertised inventory.
+
+Dedicated Unsplash photo IDs: Signal — `1615874959474-d609969a20ed`, `1600566753086-00f18fb6b3ea`; Amethyst — `1600121848594-d8644e57abab`, `1486406146926-c627a92ad1ab`; Terra — `1616486338812-3dadae4b4ace`, `1449844908441-8829872d2607`.
+
+Additional dedicated carousel photo IDs: Signal `1600047509782-20d39509f26d`; Amethyst `1511818966892-d7d671e672a2`; Terra `1449158743715-0a90ebb6d2d8`.
