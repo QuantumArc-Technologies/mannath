@@ -1,0 +1,123 @@
+/* Shared responsive behavior, loaded after each theme's art direction. */
+:where(.intro,.collection-grid,.philosophy,.destination,.values-grid,.contact-section,.form-row,.footer-top,.reference-stage,.aurelia-stage,.nocturne-stage)>*{min-width:0}
+:where(h1,h2,h3,p,a,label){overflow-wrap:break-word}
+input,select,textarea{min-width:0;max-width:100%}
+:where(.reference-art,.aurelia-gallery,.nocturne-gallery,.property-image,.destination-image){min-width:0}
+
+@media(max-width:1000px){
+ html{scroll-padding-top:88px}
+ html[data-theme] .header{height:88px}
+ html[data-theme] .nav-shell{padding-inline:5%;gap:18px}
+ html[data-theme] .menu-toggle{display:flex;flex-direction:column;justify-content:center;gap:6px;flex:0 0 44px;width:44px;height:44px;padding:10px;background:transparent;border:0;color:inherit}
+ html[data-theme] .menu-toggle span{width:24px;height:1px;background:currentColor}
+ html[data-theme] .header nav{display:none;position:absolute;inset:88px 0 auto;background:inherit;color:inherit;padding:24px 5% 30px;border-bottom:1px solid var(--line);box-shadow:0 16px 20px #0001;max-height:calc(100dvh - 88px);overflow-y:auto}
+ html[data-theme] .header.menu-open nav{display:flex;flex-direction:column;align-items:stretch;gap:0}
+ html[data-theme] .header nav>a{display:flex;align-items:center;min-height:48px;font-size:16px;padding:8px 0}
+ html[data-theme] .header nav>a:after{bottom:5px}
+ html[data-theme] .nav-cta{margin-left:auto;margin-right:0;min-height:44px;flex-shrink:0}
+ html[data-theme] .contact-section{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4vw}
+ html[data-theme] .contact-copy h1{font-size:clamp(40px,5.4vw,62px);letter-spacing:-2px}
+ html[data-theme] .form-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ .reference-copy h1{margin-right:0}
+ .folio-seal{width:70px;height:70px;right:0;font-size:25px}
+ .folio-mini{max-width:90px}
+}
+@media(max-width:700px){
+ html{scroll-padding-top:78px}
+ html[data-theme] .header{height:78px}
+ html[data-theme] .nav-shell{padding-inline:6%;gap:12px}
+ html[data-theme] .header nav{top:78px;padding-inline:6%;max-height:calc(100dvh - 78px)}
+ html[data-theme] .brand{gap:8px}
+ html[data-theme] .brand>span{font-size:clamp(18px,5.6vw,24px);letter-spacing:1.5px}
+ html[data-theme] .brand small{font-size:6px;letter-spacing:3px}
+ html[data-theme] .brand img{width:34px;height:34px}
+ html[data-theme] .nav-cta{padding:8px 12px;gap:10px;font-size:10px}
+ html[data-theme] .section{padding-inline:7%}
+ html[data-theme] .intro,html[data-theme] .destination,html[data-theme] .contact-section,html[data-theme] .values-grid{grid-template-columns:minmax(0,1fr)}
+ html[data-theme] .contact-section{gap:35px}
+ html[data-theme] .contact-copy h1{font-size:clamp(38px,10.8vw,66px);letter-spacing:-1.8px;line-height:1.07}
+ html[data-theme] .page-intro h1{font-size:clamp(38px,10.8vw,62px);letter-spacing:-1.8px;line-height:1.08}
+ html[data-theme] .cta-section h2{font-size:clamp(36px,10.4vw,60px);letter-spacing:-1.5px;line-height:1.1}
+ html[data-theme] .form-panel{width:100%;padding:28px 22px}
+ html[data-theme] .form-panel h2{font-size:clamp(28px,8vw,38px)}
+ html[data-theme] .form-row{grid-template-columns:minmax(0,1fr)}
+ html[data-theme] :is(input:not([type=checkbox]),select,textarea){font-size:16px;min-height:44px}
+ html[data-theme] :is(input::placeholder,textarea::placeholder){font-size:13px}
+ html[data-theme] .checkbox-label{font-size:12px;gap:12px}
+ html[data-theme] .checkbox-label input{width:20px;height:20px;flex-shrink:0}
+ html[data-theme] .button{min-height:48px;max-width:100%;gap:22px;padding:14px 20px}
+ html[data-theme] .button svg{flex-shrink:0}
+ html[data-theme] .contact-photo{height:clamp(190px,58vw,300px)}
+ html[data-theme] .wide-image{height:clamp(260px,80vw,430px)}
+ html[data-theme] .wide-image>span{max-width:calc(100% - 30px);line-height:1.7}
+ html[data-theme] .page-intro-bottom p br{display:none}
+ html[data-theme] .footer-top{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 18px}
+ html[data-theme] .footer-top>div:first-child{flex-wrap:wrap;gap:18px}
+ html[data-theme] .footer-bottom{padding-bottom:100px;gap:14px;flex-wrap:wrap}
+ .theme-drawer{padding-bottom:max(25px,env(safe-area-inset-bottom))}
+ .drawer-close{width:44px;height:44px;flex-shrink:0}
+ html[data-theme] .theme-drawer .theme-options button{padding:18px 14px;gap:12px}
+ html[data-theme] .theme-option-copy strong{font-size:28px}
+ html[data-theme] .theme-option-copy>span{font-size:10px;line-height:1.5}
+ .drawer-intro{padding:25px 0}
+ .reference-copy,.aurelia-copy,.nocturne-copy,.atelier-heading,.folio-title-row{min-width:0}
+ .aurelia-stage,.nocturne-stage{grid-template-columns:minmax(0,1fr)}
+ .aurelia-copy h1{font-size:clamp(58px,14.8vw,100px);letter-spacing:-2.5px}
+ .folio-title-row h1{font-size:clamp(43px,10.8vw,76px);letter-spacing:-2.5px}
+ .atelier-heading h1{font-size:clamp(39px,11.5vw,78px)}
+ html[data-theme] .reference-copy h1{font-size:clamp(48px,12.6vw,86px);letter-spacing:-2px}
+ html[data-theme] .reference-nine .reference-copy h1{font-size:clamp(65px,16vw,100px)}
+ .reference-top{line-height:1.7}
+ .reference-bottom{gap:18px}
+ .reference-carousel{flex-wrap:wrap;gap:8px;width:100%}
+ .reference-word{width:auto;min-width:75px;flex:1;font-size:23px}
+ .reference-carousel button{width:44px;height:44px;flex-shrink:0}
+ .reference-carousel [data-reference-count]{font-size:8px;letter-spacing:0}
+ .reference-image-note{right:76px}
+ .reference-image-note strong{font-size:clamp(22px,6.8vw,30px)}
+ .reference-photo-link{width:44px;height:44px}
+ .reference-art,.reference-eight .reference-art,.reference-nine .reference-art{height:clamp(350px,105vw,460px)}
+ .nocturne-rail{flex-wrap:wrap;gap:12px}
+ .nocturne-pagination{flex:1 1 100%;gap:12px}
+ .nocturne-dots{max-width:none;gap:5px}
+ .nocturne-dots button{height:44px;padding:20px 0}
+ .nocturne-dots button:before{top:21px}
+ .nocturne-controls{margin-left:auto}
+ .nocturne-controls button{width:44px;height:44px}
+ .aurelia-controls{gap:10px;flex-wrap:wrap}
+ .aurelia-dots{gap:8px}
+ .aurelia-dots button{width:32px;min-height:44px}
+ .aurelia-arrows{gap:4px;margin-left:auto}
+ .aurelia-arrows button{width:44px;height:44px}
+ .folio-paging{gap:8px;flex-shrink:0}
+ .folio-paging button{width:44px;height:44px}
+ .folio-gallery-bottom>span:first-child{max-width:105px}
+ .folio-gallery{height:clamp(400px,115vw,500px)}
+ .riviera-selector>div{flex-wrap:wrap}
+ .riviera-selector button{min-height:44px;min-width:0;padding:9px 8px;font-size:9px;gap:5px}
+ .riviera-aside{flex-wrap:wrap}
+ .riviera-aside a{min-height:44px}
+ .riviera-window{height:clamp(360px,105vw,470px)}
+ .riviera-heading h1{font-size:clamp(52px,13vw,90px)}
+ html[data-theme] .property-meta h3{overflow-wrap:break-word}
+}
+@media(max-width:380px){
+ html[data-theme] .nav-cta{display:none}
+ html[data-theme] .menu-toggle{margin-left:auto}
+ html[data-theme] .section-heading h2,html[data-theme] .intro h2,html[data-theme] .destination h2,html[data-theme] .philosophy h2{font-size:38px;letter-spacing:-1.5px}
+ .reference-carousel{gap:5px}
+ .reference-word{font-size:21px;min-width:72px}
+ .reference-carousel button{width:40px;height:44px}
+ .aurelia-controls{justify-content:center}
+ .aurelia-arrows{margin-left:0}
+ .folio-gallery-bottom{flex-wrap:wrap}
+ .folio-gallery-bottom>span:first-child{max-width:none;width:100%}
+ .folio-paging{margin-left:auto}
+ .folio-frame-caption h2{font-size:28px}
+ .folio-frame-caption>a{gap:8px;font-size:8px}
+ .folio-note p{font-size:19px}
+ .atelier-intro{flex-wrap:wrap;gap:12px}
+ .atelier-intro .text-link{min-height:44px}
+ html[data-theme] .theme-option-copy strong{font-size:25px}
+}
+@media(hover:none){.property-card:hover img{transform:none}.theme-launcher:hover{transform:none}}

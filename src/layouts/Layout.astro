@@ -5,6 +5,7 @@ import '../styles/nocturne.css';
 import '../styles/aurelia.css';
 import '../styles/riviera.css';
 import '../styles/folio.css';
+import '../styles/responsive.css';
 import ThemeSwitcher from '../components/ThemeSwitcher.astro';
 import Logo from '../components/Logo.astro';
 import Arrow from '../components/Arrow.astro';
@@ -30,6 +31,10 @@ if(document.documentElement.dataset.theme === 'two') document.querySelector('met
 <script>
 const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
 toggle?.addEventListener('click',()=>{const expanded=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!expanded));document.querySelector('.header')?.classList.toggle('menu-open',!expanded);});
+const closeMenu=()=>{toggle?.setAttribute('aria-expanded','false');document.querySelector('.header')?.classList.remove('menu-open');};
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&toggle?.getAttribute('aria-expanded')==='true'){closeMenu();toggle.focus();}});
+document.addEventListener('click',event=>{if(event.target instanceof Node&&!document.querySelector('.header')?.contains(event.target))closeMenu();});
+matchMedia('(max-width: 1000px)').addEventListener('change',closeMenu);
 document.querySelectorAll('#main-nav a').forEach(a=>a.addEventListener('click',()=>{toggle?.setAttribute('aria-expanded','false');document.querySelector('.header')?.classList.remove('menu-open');}));
 document.documentElement.classList.add('reveal-ready');
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}}),{threshold:0.1});document.querySelectorAll('[data-reveal]').forEach(el=>observer.observe(el));
