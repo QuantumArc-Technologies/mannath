@@ -29,3 +29,9 @@ npm run preview
 Taraf (https://www.tarafholding.com/) and Penthouse.ae (https://penthouse.ae/) informed the cinematic, editorial approach. The brand, layouts, styling and copy are original to this project.
 
 Deployment is configured separately from this source repository.
+
+## Visual themes
+
+The floating Themes button opens a sidebar that switches between **Evergreen** (Theme One) and **Atelier** (Theme Two), and remembers the choice in local storage across all pages. Theme One is the default. Direct previews: `/?theme=1` and `/?theme=2`. Switching with the sidebar removes the preview parameter so subsequent reloads respect the visitor's latest choice.
+
+Atelier has its own architectural hero, asymmetric collection grid, arched image treatment, warm espresso/bronze palette and motion. Styles are isolated in `src/styles/atelier.css`; the original palette and layout remain available. Both themes honor reduced-motion preferences.
