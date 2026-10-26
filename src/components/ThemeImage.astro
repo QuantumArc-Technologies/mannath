@@ -1,0 +1,8 @@
+---
+interface Props {src:string;alt:string;width:string|number;height:string|number;loading?:'lazy'|'eager';fetchpriority?:'high'|'low'|'auto';class?:string;}
+const {src,alt,class:imageClass,...attrs}=Astro.props;
+const kind=src.includes('interior')?'interior':src.includes('dubai')?'coast':'desert';
+const descriptions={interior:'Conceptual penthouse with a sculptural staircase and panoramic windows',coast:'Conceptual coastal residence with rounded terraces at twilight',desert:'Conceptual sculptural desert villa beside a reflecting pool'};
+---
+<img class:list={['original-theme-image',imageClass]} src={src} alt={alt} {...attrs}/><img class:list={['folio-theme-image',imageClass]} src={'/images/folio-'+kind+'.jpg'} alt={descriptions[kind]} {...attrs}/>
+<style is:global>.folio-theme-image{display:none}html[data-theme=six] .original-theme-image{display:none}html[data-theme=six] .folio-theme-image{display:block}</style>

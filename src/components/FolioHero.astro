@@ -1,0 +1,25 @@
+---
+import Arrow from './Arrow.astro';
+const frames=[{name:'The sculptural escape',type:'PRIVATE VILLAS',image:'folio-desert.jpg',alt:'Conceptual sculptural desert residence with a circular opening and reflecting pool',interest:'Private villas'},{name:'A different altitude',type:'CITY RESIDENCES',image:'folio-interior.jpg',alt:'Conceptual penthouse with a sculptural spiral staircase and coastal views',interest:'City residences'},{name:'Where horizons open',type:'WATERFRONT RESIDENCES',image:'folio-coast.jpg',alt:'Conceptual coastal tower with rounded terraces at violet twilight',interest:'Waterfront residences'}];
+---
+<section class="folio-hero" aria-labelledby="folio-title">
+ <div class="folio-meta"><span>THE MANNATH FOLIO — VOL. 01</span><span>EXCEPTIONAL BY DESIGN. PERSONAL BY NATURE.</span><a href="#collection">OPEN THE COLLECTION ↓</a></div>
+ <div class="folio-title-row"><span class="folio-mini">REAL ESTATE.<br/>REIMAGINED.</span><h1 id="folio-title">For the<br/><em>extraordinary.</em></h1><span class="folio-seal" aria-hidden="true">M<span>AN EYE FOR<br/>THE EXCEPTIONAL</span></span></div>
+ <div class="folio-gallery" role="group" aria-label="Architectural lookbook">{frames.map((frame,i)=><article class:list={['folio-frame',{'is-open':i===0}]} data-folio-frame={i}><img src={'/images/'+frame.image} alt={frame.alt} width="1536" height="1024" loading={i===0?'eager':'lazy'}/><div class="folio-frame-shade"></div><button type="button" class="folio-frame-toggle" data-folio-select={i} aria-expanded={i===0?'true':'false'} aria-controls={'folio-caption-'+i}><span>0{i+1}</span><span>{frame.type}</span><span aria-hidden="true">↗</span></button><div class="folio-frame-caption" id={'folio-caption-'+i} inert={i!==0}><span>THE MANNATH EDIT / 0{i+1}</span><h2>{frame.name}</h2><a href={'/contact/?interest='+encodeURIComponent(frame.interest)}>Explore this way of living <Arrow/></a></div></article>)}</div>
+ <div class="folio-gallery-bottom"><span>THREE WAYS TO LIVE. ONE PLACE TO BEGIN.</span><div class="folio-paging"><button type="button" data-folio-prev aria-label="Previous lookbook image">←</button><span data-folio-count>01 / 03</span><button type="button" data-folio-next aria-label="Next lookbook image">→</button></div><span>CONCEPTUAL ARCHITECTURE · NOT PROPERTY LISTINGS</span></div>
+ <div class="folio-note"><span class="folio-note-mark" aria-hidden="true">↳</span><p>Some homes catch your eye.<br/><em>The right one changes your perspective.</em></p><a href="#introduction" aria-label="Discover the Mannath perspective">↓</a></div>
+ <span class="sr-only" role="status" data-folio-status></span>
+</section>
+<script>
+const root=document.querySelector<HTMLElement>('.folio-hero');
+if(root){
+ const frames=Array.from(root.querySelectorAll<HTMLElement>('[data-folio-frame]'));
+ const buttons=Array.from(root.querySelectorAll<HTMLButtonElement>('[data-folio-select]'));
+ let active=0;
+ const show=(index:number)=>{active=(index+frames.length)%frames.length;frames.forEach((frame,i)=>{frame.classList.toggle('is-open',i===active);buttons[i].setAttribute('aria-expanded',String(i===active));const caption=frame.querySelector<HTMLElement>('.folio-frame-caption');if(caption)caption.inert=i!==active;});const count=root.querySelector('[data-folio-count]');if(count)count.textContent=`0${active+1} / 03`;const status=root.querySelector('[data-folio-status]');if(status)status.textContent=frames[active].querySelector('h2')?.textContent||'';};
+ buttons.forEach((button,i)=>button.addEventListener('click',()=>show(i)));
+ root.querySelector('[data-folio-prev]')?.addEventListener('click',()=>show(active-1));root.querySelector('[data-folio-next]')?.addEventListener('click',()=>show(active+1));
+ buttons.forEach((button,i)=>button.addEventListener('keydown',event=>{if(event.key==='ArrowRight'||event.key==='ArrowLeft'){event.preventDefault();show(i+(event.key==='ArrowRight'?1:-1));buttons[active].focus();}}));
+ let start=0;const gallery=root.querySelector('.folio-gallery');gallery?.addEventListener('touchstart',((event:TouchEvent)=>{start=event.changedTouches[0].clientX;}) as EventListener,{passive:true});gallery?.addEventListener('touchend',((event:TouchEvent)=>{const distance=event.changedTouches[0].clientX-start;if(Math.abs(distance)>65)show(active+(distance<0?1:-1));}) as EventListener,{passive:true});
+}
+</script>
