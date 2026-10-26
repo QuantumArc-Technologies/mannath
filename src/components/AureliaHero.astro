@@ -1,0 +1,46 @@
+---
+import Arrow from './Arrow.astro';
+const slides = [
+ {image:'nocturne-pool.jpg', title:'A quieter kind of extraordinary.', label:'THE WATERFRONT EDIT', location:'Coastal living · UAE'},
+ {image:'villa.jpg', title:'Room for a life less ordinary.', label:'THE PRIVATE VILLA EDIT', location:'Private retreats · UAE'},
+ {image:'nocturne-living.jpg', title:'Beautifully considered. Entirely yours.', label:'THE RESIDENCE EDIT', location:'Contemporary living · UAE'},
+];
+---
+<section class="aurelia-hero" aria-labelledby="aurelia-title">
+ <div class="aurelia-topline"><span>CURATED HOMES. CONSIDERED LIVING.</span><span>THE UAE, THROUGH A DIFFERENT LENS <i>↗</i></span></div>
+ <div class="aurelia-stage">
+  <div class="aurelia-copy"><span class="eyebrow"><i></i> THE MANNATH COLLECTION</span><h1 id="aurelia-title">A life<br/>beautifully<br/><em>composed.</em></h1><p>Some homes change your address.<br/>The right one changes your perspective.</p><a class="aurelia-link" href="#collection">Find your place in the extraordinary <span><Arrow/></span></a><div class="aurelia-note"><span class="aurelia-sun" aria-hidden="true">✳</span><span>Rooted in the Emirates.<br/>Inspired by the way you live.</span></div></div>
+  <div class="aurelia-gallery" role="region" aria-roledescription="carousel" aria-label="The Mannath lifestyle collection">
+   <div class="aurelia-photo" tabindex="0" aria-label="Image carousel. Use left and right arrow keys to browse.">
+   {slides.map((slide,i)=><figure class:list={['aurelia-slide',{'is-active':i===0}]} aria-hidden={i!==0}><img src={'/images/'+slide.image} alt={slide.title+' Architectural lifestyle inspiration.'} width="1200" height="1500" loading={i===0?'eager':'lazy'} fetchpriority={i===0?'high':'auto'}/><figcaption><span>{slide.label}</span><h2>{slide.title}</h2><small>{slide.location}</small></figcaption></figure>)}
+   <span class="aurelia-photo-label">THE ART OF BELONGING</span><span class="aurelia-photo-seal" aria-hidden="true">M<span>THE CONSIDERED LIFE</span></span>
+   </div>
+   <div class="aurelia-controls"><div class="aurelia-dots" role="group" aria-label="Choose image">{slides.map((slide,i)=><button type="button" aria-label={'Show '+slide.label.toLowerCase()} aria-pressed={i===0} data-aurelia-slide={i}><span>0{i+1}</span></button>)}</div><div class="aurelia-arrows"><button type="button" class="aurelia-pause" aria-label="Pause image carousel">Ⅱ</button><button type="button" class="aurelia-prev" aria-label="Previous image">←</button><button type="button" class="aurelia-next" aria-label="Next image">→</button></div></div><span class="sr-only aurelia-status" role="status" aria-live="polite"></span>
+  </div>
+ </div>
+ <div class="aurelia-bottom"><a href="#introduction"><span>↓</span> A LITTLE FURTHER, A LITTLE CLOSER TO HOME</a><span>01 — AN INVITATION TO LIVE WELL</span></div>
+</section>
+<div class="aurelia-ribbon" aria-hidden="true"><div>{[0,1,2,3].map(()=><span>Extraordinary places <i>✳</i> A considered life <i>✳</i> Infinite possibilities <i>✳</i></span>)}</div></div>
+<script>
+const gallery=document.querySelector<HTMLElement>('.aurelia-gallery');
+if(gallery){
+ const slides=Array.from(gallery.querySelectorAll<HTMLElement>('.aurelia-slide'));
+ const dots=Array.from(gallery.querySelectorAll<HTMLButtonElement>('[data-aurelia-slide]'));
+ const media=matchMedia('(prefers-reduced-motion: reduce)');
+ let current=0,paused=media.matches,timer:ReturnType<typeof setInterval>|undefined;
+ const pause=gallery.querySelector<HTMLButtonElement>('.aurelia-pause');
+ const show=(index:number,announce=false)=>{current=(index+slides.length)%slides.length;slides.forEach((slide,i)=>{slide.classList.toggle('is-active',i===current);slide.setAttribute('aria-hidden',String(i!==current));});dots.forEach((dot,i)=>dot.setAttribute('aria-pressed',String(i===current)));if(announce){const status=gallery.querySelector('.aurelia-status');if(status)status.textContent=`Image ${current+1} of ${slides.length}: ${slides[current].querySelector('h2')?.textContent}`;}};
+ const stop=()=>{if(timer)clearInterval(timer);timer=undefined;};
+ const start=()=>{stop();if(!paused&&!document.hidden&&document.documentElement.dataset.theme==='four')timer=setInterval(()=>show(current+1),6500);};
+ const syncPause=()=>{if(pause){pause.textContent=paused?'▶':'Ⅱ';pause.setAttribute('aria-label',paused?'Play image carousel':'Pause image carousel');}};
+ const move=(index:number)=>{show(index,true);start();};
+ dots.forEach((dot,i)=>dot.addEventListener('click',()=>move(i)));
+ gallery.querySelector('.aurelia-prev')?.addEventListener('click',()=>move(current-1));gallery.querySelector('.aurelia-next')?.addEventListener('click',()=>move(current+1));
+ pause?.addEventListener('click',()=>{paused=!paused;syncPause();start();});
+ gallery.addEventListener('mouseenter',stop);gallery.addEventListener('mouseleave',start);gallery.addEventListener('focusin',stop);gallery.addEventListener('focusout',event=>{if(!gallery.contains(event.relatedTarget as Node))start();});
+ gallery.querySelector('.aurelia-photo')?.addEventListener('keydown',event=>{const e=event as KeyboardEvent;if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();move(current+(e.key==='ArrowRight'?1:-1));}});
+ let touchX=0;gallery.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX;stop();},{passive:true});gallery.addEventListener('touchend',e=>{const diff=e.changedTouches[0].clientX-touchX;if(Math.abs(diff)>45)move(current+(diff<0?1:-1));else start();},{passive:true});
+ document.addEventListener('visibilitychange',start);new MutationObserver(start).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});media.addEventListener('change',()=>{paused=media.matches;syncPause();start();});syncPause();start();
+ let queued=false;const parallax=()=>{if(queued)return;queued=true;requestAnimationFrame(()=>{if(!media.matches&&document.documentElement.dataset.theme==='four'){const y=Math.min(window.scrollY,900);gallery.style.setProperty('--scroll-offset',`${y*.09}px`);}queued=false;});};window.addEventListener('scroll',parallax,{passive:true});
+}
+</script>

@@ -32,7 +32,7 @@ Deployment is configured separately from this source repository.
 
 ## Visual themes
 
-The floating Themes button opens a sidebar that switches between **Evergreen** (Theme One) and **Atelier** (Theme Two), and remembers the choice in local storage across all pages. Theme One is the default. Direct previews: `/?theme=1`, `/?theme=2` and `/?theme=3`. Switching with the sidebar removes the preview parameter so subsequent reloads respect the visitor's latest choice.
+The floating Themes button opens a sidebar that switches between **Aurelia** (Theme Four), **Evergreen** (Theme One), **Atelier** (Theme Two), and **Nocturne** (Theme Three), and remembers the choice in local storage across all pages. Aurelia is the default; existing visitors are introduced to it once, then their selected theme is remembered. Direct previews: `/?theme=1`, `/?theme=2`, `/?theme=3` and `/?theme=4`. Switching with the sidebar removes the preview parameter so subsequent reloads respect the visitor's latest choice.
 
 Atelier has its own architectural hero, asymmetric collection grid, arched image treatment, warm espresso/bronze palette and motion. Styles are isolated in `src/styles/atelier.css`; the original palette and layout remain available. Both themes honor reduced-motion preferences.
 
@@ -43,3 +43,7 @@ Preview with `/?theme=3` or select Nocturne from the floating theme sidebar. A m
 Additional illustrative Unsplash photography: photo-1600210492486-724fe5c67fb0, photo-1600047509807-ba8f99d2cdde, photo-1600607687939-ce8a6c25118c. These are architectural inspiration, not advertised UAE listings.
 
 Nocturne's carousel now includes seven scenes. Additional Unsplash images: photo-1613490493576-7fde63acd811 (pool villa), photo-1600607688969-a5bfcd646154 (garden residence), photo-1600210492493-0946911123ea (interior), photo-1512632578888-169bbbc64f33 (Abu Dhabi landmark).
+
+### Aurelia — Theme Four
+
+Preview with `/?theme=4`. Deep olive, burnished copper, champagne and parchment create a warm editorial identity across all pages. Includes an arched three-image carousel with crossfades, autoplay, pause, keyboard and swipe controls; scroll parallax; rotating ornament; moving typography ribbon; staggered reveals; and a mobile swipe collection. Reduced-motion preferences disable autoplay and decorative motion. Styles live in `src/styles/aurelia.css` and the hero in `src/components/AureliaHero.astro`.
